@@ -59,8 +59,8 @@ func pathshorten(path string) string {
 func main() {
 	flag.Parse()
 
-	if flag.NArg() < 0 {
-		fmt.Fprintln(os.Stderr, "too few arguments")
+	if flag.NArg() < 1 {
+		fmt.Fprintf(os.Stderr, "pathshorten: too few arguments\n")
 		os.Exit(1)
 	}
 
