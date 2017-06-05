@@ -4,57 +4,9 @@ import (
 	"flag"
 	"fmt"
 	"os"
-	"strings"
+
+	"github.com/b4b4r07/go-pathshorten/shorten"
 )
-
-func pathshorten(path string) string {
-	var (
-		s     string
-		skip  bool
-		slash bool
-	)
-
-	pos := 0
-	sep := string(os.PathSeparator)
-	count := strings.Count(path, sep)
-
-	if len(path) == 1 && path == "." {
-		return path
-	}
-
-	if !strings.Contains(path, sep) {
-		return path
-	}
-
-	for _, p := range strings.Split(path, "") {
-		switch p {
-		case sep:
-			s += p
-			skip = false
-			slash = true
-			pos += 1
-		case ".":
-			if slash {
-				s += p
-				skip = false
-			}
-			slash = false
-		default:
-			if count == pos {
-				s += p
-				continue
-			}
-			if skip {
-				continue
-			}
-			s += p
-			skip = true
-			slash = false
-		}
-	}
-
-	return s
-}
 
 func main() {
 	flag.Parse()
@@ -65,6 +17,6 @@ func main() {
 	}
 
 	for _, path := range flag.Args() {
-		fmt.Println(pathshorten(path))
+		fmt.Println(shorten.Path(path))
 	}
 }
