@@ -1,11 +1,11 @@
-package shorten
+package pathshorten
 
 import (
 	"os"
 	"strings"
 )
 
-func Path(path string) string {
+func Run(path string) string {
 	var (
 		s     string
 		skip  bool

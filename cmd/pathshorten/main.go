@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/b4b4r07/go-pathshorten/shorten"
+	"github.com/b4b4r07/go-pathshorten"
 )
 
 func main() {
@@ -17,6 +17,6 @@ func main() {
 	}
 
 	for _, path := range flag.Args() {
-		fmt.Println(shorten.Path(path))
+		fmt.Println(pathshorten.Run(path))
 	}
 }
